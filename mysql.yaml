@@ -47,13 +47,13 @@ resources:
     type: OS::Heat::RandomString
     properties:
       length: 32
-      character_classes: [digits, letters]
+      sequence: lettersdigits
  
   database_password:
     type: OS::Heat::RandomString
     properties:
       length: 32
-      character_classes: [digits, letters]
+      sequence: lettersdigits
  
   security_group:
     type: OS::Neutron::SecurityGroup
