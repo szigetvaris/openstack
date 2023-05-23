@@ -100,10 +100,10 @@ resources:
             mysqladmin -u root password "__mysql_root_password__"
  
             # listen on all network interfaces
-            sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+            sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
  
             # restart service
-            systemctl restart mysql
+            service mysql restart
  
             # create wordpress database
             mysql -u root --password="__mysql_root_password__" <<EOF
