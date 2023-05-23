@@ -47,13 +47,13 @@ resources:
     type: OS::Heat::RandomString
     properties:
       length: 32
-      sequence: lettersdigits
+      character_classes: [digits, letters]
  
   database_password:
     type: OS::Heat::RandomString
     properties:
       length: 32
-      sequence: lettersdigits
+      character_classes: [digits, letters]
  
   security_group:
     type: OS::Neutron::SecurityGroup
@@ -100,10 +100,10 @@ resources:
             mysqladmin -u root password "__mysql_root_password__"
  
             # listen on all network interfaces
-            sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+            sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
  
             # restart service
-            service mysql restart
+            systemctl restart mysql
  
             # create wordpress database
             mysql -u root --password="__mysql_root_password__" <<EOF
